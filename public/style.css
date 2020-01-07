@@ -1,0 +1,97 @@
+html, body, #root{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url('capivara.svg');
+    background-size: 5rem;
+    background-blend-mode: multiply;
+}
+
+input:focus, button:focus{
+    outline: none;
+}
+
+header{
+    padding: 0.5em;
+    background-color: #262626;
+    color: #ffffff
+}
+
+header h1{
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.953rem;
+}
+
+#user-form{
+    display: flex;
+    justify-content: center;
+}
+
+#user-form label{
+    padding: 0 1rem;
+}
+
+#user-form input{
+    padding: 0.2rem 0.5rem;
+}
+
+#messages{
+    list-style-type: none;
+    margin: 0;
+    padding: 0 0.5rem;
+}
+
+#messages li{
+    border-radius: 1rem;
+    border: 0.1rem solid black;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    max-width: 70%;
+}
+
+#messages li.recived-message{
+    background-color: #ffffff;
+}
+
+#messages li.sent-message{
+    background-color: rgb(255, 226, 188);
+    margin-left: 30%;
+}
+p.author{
+    font-weight: bold;
+    margin-top: 0;
+}
+
+p.text{
+    margin-bottom: 0;
+}
+
+#chat-form{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    /* background-color: cornflowerblue; */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+#chat-form input{
+    border: 0.1rem solid black;
+    width: 100%;
+    font-size: 1.25rem;
+    padding-left: 1rem;
+}
+
+#chat-form button{
+    border: 0.1rem solid black;
+    margin-left: 0.5rem;
+    font-size: 2rem;
+    padding: 0 1rem;
+    cursor: pointer;
+}

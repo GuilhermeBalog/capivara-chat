@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Capivara Chat</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="root">
+            <header>
+                <h1>Capivara Chat</h1>
+                <div id="user-form">
+                    <label for="username">username</label>
+                    <input type="text" id="username" placeholder="Type your username...">
+                </div>
+            </header>
+            <ul id="messages"></ul>
+            <form id="chat-form">
+                <input type="text" autocomplete="off" id="message-text" placeholder="Type your message...">
+                <button type="submit">&vartriangleright;</button>
+            </form>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+        <script>
+            const socket = io()
+            const usernameInput = document.querySelector("#username")
+            const savedUsername = localStorage.getItem('capivara-username')
+            const form = document.querySelector('#chat-form')
+            const messageInput = document.querySelector('#message-text')
+            const messagesContainer = document.querySelector('#messages') 
+
+            if(savedUsername){
+                usernameInput.value = savedUsername
+            }
+
+            function saveUsername(){
+                localStorage.setItem('capivara-username', usernameInput.value)
+            }
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault()
+                const currentUsername = usernameInput.value
+                const message = messageInput.value
+
+                if(!currentUsername || !message) return
+
+                const messageObject = { author: currentUsername, text: message }
+
+                socket.emit('sendMessage', messageObject)
+                saveUsername()
+                messageInput.value = ''
+                appendMessage(messageObject)
+            })
+
+            function appendMessage(message){
+                const messageAuthor = document.createElement("p")
+                messageAuthor.classList.add('author')
+                messageAuthor.innerHTML = message.author
+
+                const messageText = document.createElement("p")
+                messageText.classList.add("text")
+                messageText.innerHTML = message.text
+
+                const li = document.createElement('li')
+                li.appendChild(messageAuthor)
+                li.appendChild(messageText)
+
+                if(message.author == usernameInput.value){
+                    li.classList.add("sent-message")
+                } else {
+                    li.classList.add("recived-message")
+                }
+
+                messagesContainer.appendChild(li)
+            }
+
+            socket.on('recivedMessage', (message) => {
+                appendMessage(message)
+            })
+
+            socket.on('previousMessages', (messages) => {
+                for(message of messages){
+                    appendMessage(message)
+                }
+            })
+        </script>
+    </body>
+</html>

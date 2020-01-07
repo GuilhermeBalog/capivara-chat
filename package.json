@@ -2,11 +2,13 @@
   "name": "chat",
   "version": "1.0.0",
   "description": "A Node chat with websockets",
-  "main": "server.js",
+  "main": "index.js",
   "author": "Guilherme Balog",
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "express": "^4.17.1"
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
   }
 }
