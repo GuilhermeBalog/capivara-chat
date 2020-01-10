@@ -6,6 +6,9 @@
   "author": "Guilherme Balog",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "ejs": "^3.0.1",
     "express": "^4.17.1",
