@@ -2,7 +2,10 @@
 
 Este é um chat feito em Node.js com websockets, ainda em desenvolvimento.
 
-![Capy](public/capivara.svg)
+Você pode acessar a versão atual [aqui](https://capivarachat.herokuapp.com)
+
+<img src="public/capivara.svg" width="250" alt="Capy">
+
 
 ## Instalação
 
